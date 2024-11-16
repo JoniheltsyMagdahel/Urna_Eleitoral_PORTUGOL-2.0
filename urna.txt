@@ -1,0 +1,84 @@
+programa {
+  funcao inicio() {
+    caracter candidatos[4] //vetor de caracteres (strings)
+    inteiro numCandidatos[4] //vetor de números inteiros 
+    inteiro votos[4] //um vetor de inteiros chamado votos
+ 
+    para(inteiro i = 0; i < 4; i++) { //laço que pecorre todas 4 posições do vetor e começa com 0
+      votos[i] = 0
+    }
+
+    para(inteiro i = 0; i < 4; i++) { //é usado para coletar os nomes dos 4 candidatos.Em cada iteração do laço
+      escreva("Digite o nome do ", i + 1, "° candidato: ")
+      leia(candidatos[i])
+    }
+
+    para(inteiro j = 0; j < 4; j++) { // finalidade é coletar os números dos candidatos Em cada iteração
+      escreva("Digite o número do ", j + 1, "° candidato: ")
+      leia(numCandidatos[j])
+    }
+
+    escreva("\nVotação iniciada!\n")
+    
+    inteiro voto //Ela armazenará a escolha do usuário, que pode ser
+    //o número de um candidato, 0 para encerrar a votação ou -1 para ver a quantidade de votos atual.
+    faca { // Laço para votação
+      escreva("\nEscolha um candidato pelo número ou:\n")
+      escreva("Digite 0 para encerrar a votação.\n")
+      escreva("Digite -1 para ver a quantidade de votos atual.\n")
+
+      para(inteiro i = 0; i < 4; i++) { //permitindo que o programa mostre as informações de todos os candidatos.
+        escreva("Candidato ", i + 1, " - ", candidatos[i], " (n° ", numCandidatos[i], ")\n")
+      }//O número do candidato, (a variável i é incrementada de 1 para que a contagem comece em 1, não em 0),
+      //O nome do candidato,
+      //O número do candidato
+
+      escreva("\nDigite sua escolha: ")//pede ao usuário que insira sua escolha de voto. Isso pode ser um número de candidato,
+       //0 para encerrar ou -1 para ver a quantidade de votos.
+      leia(voto)//lê a entrada do usuário e a armazena na variável "voto"
+
+
+      se (voto == 0) { //estrutura condicional se. Se o usuário digitar 0, o programa irá encerrar a votação.
+        escreva("Votação encerrada!\n")//Caso o voto seja 0, o programa imprime a mensagem "Votação encerrada!"
+        //para informar que a votação foi finalizada.
+      }
+      senao se (voto == -1) { //Se o voto não for 0, o programa verifica se foi digitado -1
+      //aqui vera a qauntidade de votos de cada candidato
+        escreva("\nQuantidade de votos atual:\n") //imprime a mensagem "Quantidade de votos atual:".
+        para (inteiro i = 0; i < 4; i++) { //Dentro da condição "senao se" (voto == -1), começa um novo laço "para"
+        // para mostrar a quantidade de votos que cada um recebeu
+          escreva("Candidato ", candidatos[i], " (n° ", numCandidatos[i], "): ", votos[i], " votos\n") //Dentro deste laço, o programa imprime:
+          //O nome do candidato 
+          //O número do candidato
+          //A quantidade de votos que o candidato recebeu
+        }
+      } 
+      senao {
+        logico votoValido = falso //declara uma variavel do tipo logico,
+         //é inicializada como falso. permite verificar o voto do usuario em relação aos 4 candidatos.
+        para (inteiro i = 0; i < 4; i++) { //inicia um laço. 
+          se (voto == numCandidatos[i]) { //estrutura condicional, verifica se o voto do usuário é igual ao número do candidato.
+            votos[i] = votos[i] + 1 //se o número do candidato escolhido for encontrado,
+             //o número de votos do candidato é incrementado em 1. votos[i] é o vetor que armazena a quantidade de votos de cada candidato.
+            escreva("Voto registrado para ", candidatos[i], "\n")//Após registrar o voto, o programa exibe uma mensagem dizendo ao usuário que o voto foi
+            //registrado corretamente para o candidato correspondente.
+            votoValido = verdadeiro //Aqui, a variável votoValido é alterada para verdadeiro, indicando que o voto foi validado corretamente para um dos candidatos.
+  
+          }
+        }
+        se (votoValido == falso) { //estrutura condicional "se". A variável "votoValido" foi definida anteriormente
+        //no código e serve para verificar se o voto inserido corresponde a um candidato válido.
+          escreva("Número de candidato inválido! Tente novamente.\n") //Se "votoValido" for "falso" o programa informa que o número que digitou é inválido e pede para ele tentar novamente. 
+        }
+      }
+    } enquanto (voto != 0)//final do laço "enquanto"
+      //continuará executando até que o valor de "voto" seja igual a 0, o que significa que decidiu encerrar a votação.
+    escreva("\nResultado Final da Votação:\n") //o programa imprime a mensagem "Resultado Final da Votação:"
+    para (inteiro i = 0; i < 4; i++) { //para exibir a quantidade de votos recebidos por cada um deles.
+      escreva("Candidato ", candidatos[i], " (n° ", numCandidatos[i], "): ", votos[i], " votos\n") //Dentro do laço, o programa imprime para cada candidato
+      //O nome do candidato
+      // número de identificação do candidato
+      //A quantidade de votos que o candidato recebeu
+    }
+  }
+}
